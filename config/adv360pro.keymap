@@ -10,8 +10,16 @@
 
 #define ___ &trans
 
+
 #define HYPER LS(LC(LA(LGUI)))
 #define MEH LS(LC(LALT))
+
+#define QWERTY 0
+#define COLEMAK 1
+#define KEYPAD 2
+#define FN 3
+#define MOD 4
+#define MS 5
 
 / {
     /* remove unused keys from layout and move thumb cluster to bottom */
@@ -24,14 +32,27 @@
 
         base_layer {
             bindings = <
-                &kp EQUAL &kp N1    &kp N2    &kp N3    &kp N4    &kp N5    &tog 1         &mo 3     &kp N6    &kp N7    &kp N8    &kp N9    &kp N0    &kp MINUS
+                &kp EQUAL &kp N1    &kp N2    &kp N3    &kp N4    &kp N5    &tog KEYPAD    &mo MOD   &kp N6    &kp N7    &kp N8    &kp N9    &kp N0    &kp MINUS
                 &kp TAB   &kp Q     &kp W     &kp E     &kp R     &kp T     &kp MEH        &kp MINUS &kp Y     &kp U     &kp I     &kp O     &kp P     &kp BSLH
                 &kp ESC   &kp A     &kp S     &kp D     &kp F     &kp G     &kp HYPER      &kp EQUAL &kp H     &kp J     &kp K     &kp L     &kp SEMI  &kp SQT
                 &kp LSHFT &kp Z     &kp X     &kp C     &kp V     &kp B                              &kp N     &kp M     &kp COMMA &kp DOT   &kp FSLH  &kp RSHFT
                 &kp LCTRL &kp GRAVE &kp LALT  &kp LEFT  &kp RIGHT                                              &kp UP    &kp DOWN  &kp LBKT  &kp RBKT  &kp RCTRL
-                                                                  &kp BSPC  &mo 2          &mo 2     &kp DEL
+                                                                  &kp BSPC  &mo FN         &mo FN    &kp DEL
                                                         &kp SPACE &kp LGUI  &kp HOME       &kp PG_UP &kp ENTER &kp SPACE
                                                                             &kp CAPS       &kp PG_DN
+            >;
+        };
+
+        colemak_layer {
+            bindings = <
+                ___       ___       ___       ___       ___       ___       ___            ___       ___       ___       ___       ___       ___       ___
+                ___       &kp Q     &kp W     &kp F     &kp P     &kp B     ___            ___       &kp J     &kp L     &kp U     &kp Y     &kp SQT   &kp BSLH
+                ___       &kp A     &kp R     &kp S     &kp T     &kp G     ___            ___       &kp M     &kp N     &kp E     &kp I     &kp O     &kp FSLH
+                ___       &kp Z     &kp X     &kp C     &kp D     &kp V                              &kp K     &kp H     &kp COMMA &kp DOT   &kp SEMI  ___
+                ___       ___       ___       ___       ___                                                    ___       ___       ___       ___       ___
+                                                                  ___       ___            ___       ___
+                                                        ___       ___       ___            ___       ___       ___
+                                                                            ___            ___
             >;
         };
 
@@ -51,8 +72,8 @@
         fn {
             bindings = <
                 &kp F1    &kp F2    &kp F3    &kp F4    &kp F5    &kp F6    ___            ___       &kp F7    &kp F8       &kp F9       &kp F10    &kp F11   &kp F12
-                ___       ___       ___       ___       ___       ___       ___            ___       ___       ___          ___          ___        ___       ___
-                ___       ___       ___       ___       ___       ___       ___            &tog 4    ___       &kp C_PREV   &kp C_PP     &kp C_NEXT ___       ___
+                ___       ___       ___       ___       ___       ___       &tog QWERTY    ___       ___       ___          ___          ___        ___       ___
+                ___       ___       ___       ___       ___       ___       &tog COLEMAK   &tog MS   ___       &kp C_PREV   &kp C_PP     &kp C_NEXT ___       ___
                 ___       ___       ___       ___       ___       ___                                ___       ___          ___          ___        ___       ___
                 ___       ___       ___       ___       ___                                                    &kp C_VOL_UP &kp C_VOL_DN ___        ___       ___
                                                                   ___       ___            ___       ___
